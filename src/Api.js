@@ -1,17 +1,17 @@
 const onResponce = (res) => {
-	return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
 class Api {
-	constructor({ baseUrl, token }) {
-		this._token = null;
-		// or -> this._headers = headers;
-		this._baseUrl = baseUrl;
+  constructor({ baseUrl, token }) {
+    this._token = null;
+    // or -> this._headers = headers;
+    this._baseUrl = baseUrl;
     console.log(token);
-	}
+  }
 
 
-  
+
   singUpUser(data) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
@@ -32,43 +32,40 @@ class Api {
       },
       body: JSON.stringify(data),
     })
-    .then(onResponce);
+      .then(onResponce);
   }
 
-  // POST https://api.react-learning.ru/signup // регистрация { ...data, group: 'group-id'}
-  // POST https://api.react-learning.ru/signin // авторизация
-
-	getProductList() {
-		return fetch(`${this._baseUrl}/products`, {
-			headers: {
-				authorization: this._token,
-			},
-		}).then(onResponce);
-	}
+  getProductList() {
+    return fetch(`${this._baseUrl}/products`, {
+      headers: {
+        authorization: this._token,
+      },
+    }).then(onResponce);
+  }
 
   getProductById(idProduct) {
     return fetch(`${this._baseUrl}/products/${idProduct}`, {
-        headers: {
-          authorization: this._token,
-          "Content-Type": "application/json",
-        }
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      }
     }).then(onResponce)
-}
+  }
 
-	getUserInfo() {
-		return fetch(`${this._baseUrl}/users/me`, {
-			headers: {
-				authorization: this._token,
-			},
-		}).then(onResponce);
-	}
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: {
+        authorization: this._token,
+      },
+    }).then(onResponce);
+  }
   search(searchQuery) {
 
-    return fetch(`${this._baseUrl}/products/search?query=${searchQuery}`,{
-        headers: {
-            authorization: this._token
-        }
-    }).then( response => response.ok ? response.json() : Promise.reject(response.status))
+    return fetch(`${this._baseUrl}/products/search?query=${searchQuery}`, {
+      headers: {
+        authorization: this._token
+      }
+    }).then(response => response.ok ? response.json() : Promise.reject(response.status))
   }
 
   setUserInfo({ name, about }) {
@@ -84,9 +81,8 @@ class Api {
       }),
     }).then(onResponce);
   }
-  
+
   changeLikeProductStatus(productID, like) {
-    // Обычная реализация: 2 разных метода для удаления и постановки лайка.
     return fetch(`${this._baseUrl}/products/likes/${productID}`, {
       method: like ? "PUT" : "DELETE",
       headers: {
@@ -108,19 +104,19 @@ class Api {
   }
 
   getProductReviews(id) {
-		return fetch(`${this._baseUrl}/products/review/${id}`, {
-			headers: {
-				authorization: this._token,
-			},
-		}).then(onResponce);
-	}
+    return fetch(`${this._baseUrl}/products/review/${id}`, {
+      headers: {
+        authorization: this._token,
+      },
+    }).then(onResponce);
+  }
 
 }
 
 
 const config = {
-    baseUrl:'https://api.react-learning.ru',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2U0MTM0NDU5Yjk4YjAzOGY3N2IzYmIiLCJncm91cCI6Imdyb3VwLTEwIiwiaWF0IjoxNjc1ODkyMTUwLCJleHAiOjE3MDc0MjgxNTB9.qsLaIEGQoFj_sV3DZXhvx0mJf23d-mTB0WkFxfhbqrU'
+  baseUrl: 'https://api.react-learning.ru',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UxMjY4MTU5Yjk4YjAzOGY3N2IyMTMiLCJncm91cCI6Imdyb3VwLTEwIiwiaWF0IjoxNjc1Njk5ODg1LCJleHAiOjE3MDcyMzU4ODV9.qH0oCb4bkSTP-v7oiEXvtfJPsD7KXkq0Xfo6fTHtRzc'
 }
 
 
