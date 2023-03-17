@@ -1,0 +1,54 @@
+.erroe__form {
+  color: red;
+  font-size: 14px;
+
+}
+
+.erroe__form>p {
+  margin: 5px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 40px);
+  margin: 0 20px;
+  align-items: center;
+}
+
+.input {
+  padding: 7px 16px;
+  background: #ffffff;
+  border: 1px solid #ffe44d;
+  border-radius: 12px;
+  align-self: stretch;
+  margin-bottom: 10px;
+}
+
+
+
+.button_group {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  border-radius: 55px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  color: currentColor;
+  align-self: stretch;
+  margin-right: 0px;
+  margin-top: 10px;
+
+}
+
+span {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+}
